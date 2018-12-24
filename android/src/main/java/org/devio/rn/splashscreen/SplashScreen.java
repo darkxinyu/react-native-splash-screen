@@ -57,6 +57,13 @@ public class SplashScreen {
     }
 
     /**
+     * 打开启动屏（半沉浸式）
+     */
+    public static void showWithImmersion(final Activity activity) {
+        show(activity, R.style.SplashScreen_Immersion);
+    }
+
+    /**
      * 关闭启动屏
      */
     public static void hide(Activity activity) {
