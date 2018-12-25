@@ -60,7 +60,21 @@ public class SplashScreen {
      * 打开启动屏（半沉浸式）
      */
     public static void showWithImmersion(final Activity activity) {
-        show(activity, R.style.SplashScreen_Immersion);
+        if (activity == null) return;
+        mActivity = new WeakReference<Activity>(activity);
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!activity.isFinishing()) {
+                    mSplashDialog = new Dialog(activity, R.style.SplashScreen_Immersion);
+                    mSplashDialog.setCancelable(false);
+
+                    if (!mSplashDialog.isShowing()) {
+                        mSplashDialog.show();
+                    }
+                }
+            }
+        });
     }
 
     /**
